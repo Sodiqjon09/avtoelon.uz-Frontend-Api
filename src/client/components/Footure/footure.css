@@ -1,0 +1,50 @@
+footer {
+    background-color: var(--webSiteBackgroundColor);
+    padding: 50px 100px;
+    color: var(--white);
+    margin-top: 50px;
+}
+#footurData {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+footer p {
+    margin-top: 20px;
+    cursor: pointer;
+}
+footer p:hover {
+    text-decoration: underline;
+    transition: 0.2s linear;
+}
+#footerAData p {
+    color: var(--white);
+    font-size: 16px;
+}
+#footerAData .first-element {
+    color: #bbbec9;
+    cursor:auto;
+    text-decoration: none;
+}
+#FooturImg {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 10px;
+    gap: 11px;
+}
+#FooturImg img {
+    cursor: pointer;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+#FootureData {
+    display: flex;
+}
+#FootureData {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+    /* cursor: pointer; */
+}
