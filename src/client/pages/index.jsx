@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CarAPi from "../components/carApi/carApi";
 import Footure from "../components/Footure/Footure";
 import Main from "../components/Main/Main";
+// import Api from '../components/apiTest/ApiTest'
+// import ApiTest from "../components/apiTest/ApiTest";
 // import Error from "../components/Error404/Error";
 
 const Home = () => {
@@ -13,6 +15,7 @@ const Home = () => {
         <Main />
         <CarAPi />
         <Footure />
+        {/* <Api /> */}
         <Routes>
           <Route path="/mashina" />
           <Route path="/avtozapchat" />

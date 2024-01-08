@@ -26,6 +26,9 @@
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
+#carUz {
+  width: 100%;
+}
 #apiimgText:hover {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
   border-radius: 10px 0px 10px 10px;
@@ -63,7 +66,9 @@
 #carNameText {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  align-items: center;
+  /* border: 1px solid red; */
+  /* width: 100%; */
 }
 #carNameText h1:hover {
   text-decoration: underline;
@@ -198,4 +203,30 @@
 }
 #icon:nth-child(3):hover {
   border: 2px solid #27a3e2;
+}
+#apiText {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#model {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+#cost p {
+  display: flex;
+  gap: 10px;
+}
+#cost p span:nth-child(1) {
+  color: #757273;
+  font-size: 12px;
+}
+#apiText p,
+#cost p span:nth-child(2) {
+  color: #333;
+  font-size: 14px;
+  line-height: 14px;
 }
