@@ -30,106 +30,111 @@ const Main = () => {
 
   return (
     <main>
-      <div>
-        <div id="header_menu">
-          {MainDataMenu?.map((data) => {
-            return (
-              <div key={data.id}>
-                <h3>{data.name}</h3>
-                <div id="border"></div>
-              </div>
-            );
-          })}
+      <div id="mainFlex">
+        <div>
+          <div id="header_menu">
+            {MainDataMenu?.map((data) => {
+              return (
+                <div key={data.id}>
+                  <h3>{data.name}</h3>
+                  <div id="border"></div>
+                </div>
+              );
+            })}
+          </div>
+          <div id="menu_item">
+            <div id="itemMenuRegionsData">
+              {itemMenuRegionsData?.map((data) => {
+                return (
+                  <div key={data.id}>
+                    <p>{data.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div id="itemMenuCampaignsData">
+              {itemMenuCampaignsData?.map((data) => {
+                return (
+                  <div key={data.id}>
+                    <p>{data.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div id="modelMenu">
+              <p>Model</p>
+              <p>Pozitsiya</p>
+            </div>
+            <div id="checkbox">
+              {MainCheckboxData?.map((data) => (
+                <div key={data.id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={checkboxStates[data.id]}
+                      onChange={() => handleCheckboxChange(data.id)}
+                    />
+                    <p>{data?.name}</p>
+                  </label>
+                </div>
+              ))}
+            </div>
+            <div id="advancedSection">
+              <VscSettings size={sectionIcon} />
+              <p>Kengaytirilgan qidiruv</p>
+              <FaArrowDown size={sectionIcon} />
+            </div>
+          </div>
         </div>
-        <div id="menu_item">
-          <div id="itemMenuRegionsData">
-            {itemMenuRegionsData?.map((data) => {
-              return (
-                <div key={data.id}>
-                  <p>{data.name}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div id="itemMenuCampaignsData">
-            {itemMenuCampaignsData?.map((data) => {
-              return (
-                <div key={data.id}>
-                  <p>{data.name}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div id="modelMenu">
-            <p>Model</p>
-            <p>Pozitsiya</p>
-          </div>
-          <div id="checkbox">
-            {MainCheckboxData?.map((data) => (
-              <div key={data.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checkboxStates[data.id]}
-                    onChange={() => handleCheckboxChange(data.id)}
-                  />
-                  <p>{data?.name}</p>
-                </label>
+        <div>
+          <div className="secondary">
+            <div id="MainInputText">
+              <div id="MainPrice">
+                <p>Narxi</p>
+                <p>so`m</p>
+                <p>у.е.</p>
               </div>
-            ))}
-          </div>
-          <div id="advancedSection">
-            <VscSettings size={sectionIcon} />
-            <p>Kengaytirilgan qidiruv</p>
-            <FaArrowDown size={sectionIcon} />
+              <div>
+                <div id="MainInput">
+                  <div id="InputPrice">
+                    <input type="number" placeholder="dan" />
+                  </div>
+                  <div id="InputPrice2">
+                    <input type="number" placeholder="gacha" />
+                  </div>
+                </div>
+                <div id="MainMoney">
+                  <p>2 500 gacha</p>
+                  <p>2 500 — 6 500</p>
+                  <p>6 500 dan</p>
+                </div>
+              </div>
+            </div>
+            <div id="MainInputText">
+              <div id="MainPrice">
+                <p>Yili</p>
+              </div>
+              <div>
+                <div id="MainInput">
+                  <div id="InputPrice">
+                    <input type="number" placeholder="dan" />
+                  </div>
+                  <div id="InputPrice2">
+                    <input type="number" placeholder="gacha" />
+                  </div>
+                </div>
+                <div id="MainMoney">
+                  <p>3 yoshgacha</p>
+                  <p>7 gacha</p>
+                  <p>7 dan katta</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div className="secondary">
-          <div id="MainInputText" >
-            <div id="MainPrice">
-              <p>Narxi</p>
-              <p>so`m</p>
-              <p>у.е.</p>
-            </div>
-            <div>
-              <div id="MainInput">
-                <div id="InputPrice">
-                  <input type="number" placeholder="dan" />
-                </div>
-                <div id="InputPrice2">
-                  <input type="number" placeholder="gacha" />
-                </div>
-              </div>
-              <div id="MainMoney">
-                <p>2 500 gacha</p>
-                <p>2 500 — 6 500</p>
-                <p>6 500 dan</p>
-              </div>
-            </div>
-          </div>
-          <div id="MainInputText" >
-            <div id="MainPrice">
-              <p>Yili</p>
-            </div>
-            <div>
-              <div id="MainInput">
-                <div id="InputPrice">
-                  <input type="number" placeholder="dan" />
-                </div>
-                <div id="InputPrice2">
-                  <input type="number" placeholder="gacha" />
-                </div>
-              </div>
-              <div id="MainMoney">
-                <p>3 yoshgacha</p>
-                <p>7 gacha</p>
-                <p>7 dan katta</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div id="mainButton">
+        <button >E`lonni ko`rsatish</button>
       </div>
     </main>
   );

@@ -1,7 +1,8 @@
 main {
   margin-top: 200px;
-  padding: 0px 100px;
   background-color: #fafafa;
+}
+#mainFlex {
   display: flex;
   justify-content: space-between;
 }
@@ -47,6 +48,8 @@ main p {
 }
 #modelMenu {
   margin-top: 30px;
+  width: 80px;
+  /* border: 1px solid red; */
 }
 #itemMenuRegionsData,
 #itemMenuCampaignsData {
@@ -67,6 +70,12 @@ main p {
 #MainPrice p:nth-child(2) {
   color: var(--urlColor);
   text-decoration: underline;
+}
+#itemMenuRegionsData p:hover,
+#itemMenuCampaignsData p:hover,
+#modelMenu p:hover {
+  text-decoration: none;
+  color: red;
 }
 #checkbox {
   display: flex;
@@ -99,7 +108,7 @@ label p {
   font-size: 15px;
 }
 #MainPrice p:nth-child(3) {
-  background-color: #D6ECFB;
+  background-color: #d6ecfb;
   padding: 2px 6px;
   border-radius: 5px;
 }
@@ -108,14 +117,14 @@ label p {
   margin-top: 10px;
 }
 #MainInput input {
-  border: 1px solid rgba(28,24,25,.1);
+  border: 1px solid rgba(28, 24, 25, 0.1);
   height: 36px;
   padding: 0 10px;
 }
-#MainInput #InputPrice input{
+#MainInput #InputPrice input {
   border-radius: 3px 0px 0px 3px;
 }
-#MainInput #InputPrice2 input{
+#MainInput #InputPrice2 input {
   border-radius: 0px 3px 3px 0px;
 }
 #MainMoney p {
@@ -125,4 +134,27 @@ label p {
 }
 #MainInputText:nth-child(2) {
   margin-top: 20px;
+}
+#mainButton {
+  background-color: #e6f4fd;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+#mainButton button {
+  cursor: pointer;
+  color: var(--white);
+  background-color: #1e88e5;
+  width: 300px;
+  height: 37px;
+  border: 1px solid rgba(28, 24, 25, 0.05);
+  box-shadow: 0 5px 10px 0 rgba(42, 129, 221, 0.6);
+  transition: 0.4s;
+}
+
+#mainButton button:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 0.4s;
 }

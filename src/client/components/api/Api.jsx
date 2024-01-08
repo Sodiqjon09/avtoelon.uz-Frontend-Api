@@ -61,7 +61,7 @@ const Api = () => {
             </div>
             <div id="carNameText">
               <h1>{car.strMeal}</h1>
-              <Like id={Number(car.idMeal)} />
+              <Like />
             </div>
           </div>
         ))

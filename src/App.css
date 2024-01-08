@@ -15,6 +15,11 @@
 body {
   font-family: 'Jost', sans-serif;
 }
+header,
+main,
+#car {
+  padding: 0px 100px;
+}
 img {
   cursor: pointer;
 }

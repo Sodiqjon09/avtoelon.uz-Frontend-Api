@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import AnimatedButton from '../AnimatedButton/AnimatedButton';
-import './navbar.css';
-import { NavbarData } from '../../data/navbar/navbar';
+import { Link } from "react-router-dom";
+import AnimatedButton from "../AnimatedButton/AnimatedButton";
+import "./navbar.css";
+import { NavbarData } from "../../data/navbar/navbar";
 
 const NavbarComponent = () => {
   return (
@@ -13,7 +13,7 @@ const NavbarComponent = () => {
         <ul>
           {NavbarData?.map((car) => (
             <li key={car.id}>
-              <Link to={car.link}>{car.name}</Link>
+              <Link to={car.Link}>{car.name}</Link>
             </li>
           ))}
         </ul>
