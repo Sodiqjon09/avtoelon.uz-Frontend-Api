@@ -146,12 +146,14 @@ label p {
 #mainButton button {
   cursor: pointer;
   color: var(--white);
-  background-color: #1e88e5;
+  background-color: #1E88E5;
   width: 300px;
-  height: 37px;
+  height: 35px;
   border: 1px solid rgba(28, 24, 25, 0.05);
   box-shadow: 0 5px 10px 0 rgba(42, 129, 221, 0.6);
   transition: 0.4s;
+  font-size: 16px;
+  border-radius: 3px;
 }
 
 #mainButton button:hover {
