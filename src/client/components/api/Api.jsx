@@ -7,7 +7,7 @@ import "./Car_api.css";
 const Api = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [text, setText] = useState([])
+  // const [text, setText] = useState([]);
 
   useEffect(() => {
     fetch("https://masterphoneuz.pythonanywhere.com/")
@@ -26,23 +26,23 @@ const Api = () => {
         setLoading(false);
       });
   }, []);
-const pastga =document.getElementById('pastga');
-const tepaga =document.getElementById('tepaga');
-const textYana =document.getElementById("textYana");
-const apiimgText =document.getElementById("apiimgText");
+  const pastga = document.getElementById("pastga");
+  const tepaga = document.getElementById("tepaga");
+  const textYana = document.getElementById("textYana");
+  const apiimgText = document.getElementById("apiimgText");
 
   const Bottom = () => {
-    textYana.style.display = 'block';
-    pastga.style.display = 'none';
-    tepaga.style.display = 'block';
-    apiimgText.style.height = '100%';
-  }
+    textYana.style.display = "block";
+    pastga.style.display = "none";
+    tepaga.style.display = "block";
+    apiimgText.style.height = "100%";
+  };
   const Top = () => {
-    textYana.style.display = 'none';
-    pastga.style.display = 'block';
-    tepaga.style.display = 'none';
-    apiimgText.style.height = '200px';
-  }
+    textYana.style.display = "none";
+    pastga.style.display = "block";
+    tepaga.style.display = "none";
+    apiimgText.style.height = "200px";
+  };
   return (
     <div id="api">
       {loading ? (
@@ -110,9 +110,16 @@ const apiimgText =document.getElementById("apiimgText");
                   <p>{item.rang.name}</p>
                   <div id="bottom">
                     <HiChevronDown id="pastga" onClick={Bottom} size={30} />
-                    <HiChevronUp id="tepaga"onClick={Top} style={{display: 'none'}} size={30}/>
+                    <HiChevronUp
+                      id="tepaga"
+                      onClick={Top}
+                      style={{ display: "none" }}
+                      size={30}
+                    />
                   </div>
-                  <p id="textYana" style={{display: 'none'}} >{item.yana}</p>
+                  <p id="textYana" style={{ display: "none" }}>
+                    {item.yana}
+                  </p>
                 </div>
               </div>
             </div>
