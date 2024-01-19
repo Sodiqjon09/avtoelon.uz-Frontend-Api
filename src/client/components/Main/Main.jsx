@@ -29,7 +29,7 @@ const Main = () => {
   const sectionIcon = 15;
 
   return (
-    <main>
+    <main id="main">
       <div id="mainFlex">
         <div>
           <div id="header_menu">

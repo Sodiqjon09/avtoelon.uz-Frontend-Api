@@ -10,7 +10,7 @@ import Play from "../../assets/imgs/4.png";
 const Footure = () => {
   const iconSize = 35;
   return (
-    <footer>
+    <footer id="footer">
       <div id="footurData">
         <div id="footerAData">
           {FootureData1?.map((data, index) => {
