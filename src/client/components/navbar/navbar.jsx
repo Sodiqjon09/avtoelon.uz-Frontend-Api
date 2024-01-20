@@ -22,7 +22,7 @@ const NavbarComponent = () => {
     <header id="header">
       <div id="headerName">
         <div>
-          <h1>avtoelon.uzb</h1>
+          <h1>avtoelon.uz</h1>
         </div>
         <ul>
           {NavbarData?.map((car) => (
