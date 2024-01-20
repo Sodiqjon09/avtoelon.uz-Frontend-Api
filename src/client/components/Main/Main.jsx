@@ -134,7 +134,9 @@ const Main = () => {
         </div>
       </div>
       <div id="mainButton">
+        <a href="#car">
         <button >E`lonni ko`rsatish</button>
+        </a>
       </div>
     </main>
   );

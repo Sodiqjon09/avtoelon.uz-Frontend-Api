@@ -33,12 +33,12 @@ const NavbarComponent = () => {
         </ul>
       </div>
       <div id="headerTwo">
-        <Link to='https://masterphoneuz.pythonanywhere.com/admin/avto/avto/add/'>
+        <Link to='post'>
         <animated.button className="btn" style={styles}>
         <span>
           <FontAwesomeIcon icon={faPlus} />
         </span>
-        <span>Sotish</span>
+        <span> Sotish</span>
       </animated.button>
         </Link>
       </div>
