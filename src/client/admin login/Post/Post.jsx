@@ -210,19 +210,53 @@
 // };
 
 // export default Post;
+import { useEffect, useState } from "react";
 
-function Post() {
-  const avto = "Add Avto";
+const Post = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://masterphoneuz.pythonanywhere.com/all/")
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json);
+        setLoading(false); // Set loading to false once data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Set loading to false on error as well
+      });
+  }, []);
+  useEffect(() => {
+    fetch("https://masterphoneuz.pythonanywhere.com/all/")
+      .then((response) => response.json())
+      .then(json => console.log(json))
+  }, []);
+
   return (
     <div id="Post">
       <div className="content">
         <div>
-          <h2>{avto}</h2>
-          <h2>{avto}</h2>
+          <h2>Add Avto</h2>
         </div>
+      </div>
+      <div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+              {data?.map((el) => (
+                <option key={el.id} value={el.id}>
+                  {el.name}
+                </option>
+              ))}
+             
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Post;
