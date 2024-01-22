@@ -33,7 +33,9 @@ const NavbarComponent = () => {
         </ul>
       </div>
       <div id="headerTwo">
-        <Link to='post'>
+        <Link 
+        // id="Delete"
+         to='post'>
         <animated.button className="btn" style={styles}>
         <span>
           <FontAwesomeIcon icon={faPlus} />

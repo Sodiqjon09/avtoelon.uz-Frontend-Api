@@ -21,6 +21,10 @@ const Api = () => {
         setLoading(false);
       });
   }, []);
+
+
+
+  
   // const toggle = document.getElementById("toggle");
   // const pastga = document.getElementById("pastga");
   // const tepaga = document.getElementById("tepaag");

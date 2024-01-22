@@ -2,7 +2,6 @@
 
 // // import { Link } from "@mui/icons-material"
 
-
 // const Post = () => {
 //   const [postData, setPostData] = useState({
 //     model: "Toyota",
@@ -53,7 +52,6 @@
 //         console.error("API ga ma'lumot yuborishda xato: ", error)
 //       );
 //   };
-
 
 //   return (
 //     <div>
@@ -213,14 +211,18 @@
 
 // export default Post;
 
-
 function Post() {
+  const avto = "Add Avto";
   return (
-    <div>
-        <h1 style={{marginTop: '100px'}}>Hello World</h1>
-      {/* <Link to=''></Link> */}
+    <div id="Post">
+      <div className="content">
+        <div>
+          <h2>{avto}</h2>
+          <h2>{avto}</h2>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;
