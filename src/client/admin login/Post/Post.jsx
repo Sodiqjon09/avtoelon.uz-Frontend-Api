@@ -221,40 +221,73 @@ const Post = () => {
       .then((response) => response.json())
       .then((json) => {
         setData(json);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false); // Set loading to false on error as well
+        console.error("Xato fetching data:", error);
+        setLoading(false);
       });
   }, []);
+
   useEffect(() => {
     fetch("https://masterphoneuz.pythonanywhere.com/all/")
       .then((response) => response.json())
-      .then(json => console.log(json))
+      .then((json) => console.log(json));
   }, []);
 
   return (
-    <div id="Post">
-      <div className="content">
-        <div>
-          <h2>Add Avto</h2>
-        </div>
-      </div>
-      <div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <div>
-              {data?.map((el) => (
-                <option key={el.id} value={el.id}>
-                  {el.name}
-                </option>
-              ))}
-             
+    <div>
+      {loading ? (
+        <div className="loadingio-spinner-spin-s5tib6bbx1c">
+          <div className="ldio-ek9odou59f">
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
+            <div>
+              <div></div>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div id="Post">
+          <div className="content">
+            <div>
+              <h2>Add Avto</h2>
+              <h2>Add Avto</h2>
+            </div>
+          </div>
+          <div id="AddAvto" >
+            <div>
+              <div id="AvtoText">
+              <p>Marka va model*</p>
+              </div>
+              <select name="" id="">
+                {data?.[3]?.map((el) => (
+                  <option key={el.id}>{el.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

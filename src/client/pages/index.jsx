@@ -10,6 +10,7 @@ const Home = () => {
 
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/post" element={<Post />} />
         <Route
@@ -20,10 +21,8 @@ const Home = () => {
             ) : (
               <>
                 {/* Bu joyda hech narsa chiqmasin */}
-                <Navbar />
                 <Main />
                 <CarAPi />
-                <Footure />
               </>
             )
           }
@@ -33,6 +32,7 @@ const Home = () => {
         <Route path="/avtozapchat" />
         <Route path="/remont" />
       </Routes>
+      <Footure />
     </div>
   );
 };

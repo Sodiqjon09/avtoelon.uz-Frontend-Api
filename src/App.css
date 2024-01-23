@@ -17,7 +17,8 @@ body {
 }
 header,
 main,
-#car {
+#car,
+#Post {
   padding: 0px 100px;
 }
 img {
