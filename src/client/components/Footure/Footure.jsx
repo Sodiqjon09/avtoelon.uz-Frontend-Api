@@ -46,7 +46,7 @@ const Footure = () => {
         </div>
         <div id="footureThreeData">
           <div>
-            <p>Yangiliklarimiz bilan tanishib boringp</p>
+            <p>Yangiliklarimiz bilan tanishib boring</p>
           </div>
           <div id="FootureData">
             <div id="icon">

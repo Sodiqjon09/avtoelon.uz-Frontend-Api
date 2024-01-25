@@ -442,5 +442,85 @@
   box-sizing: content-box;
 }
 #AddAvto {
-  margin-top: 120px;
+  margin-top: 50px;
+  display: flex;
+  gap: 30px;
+}
+#AvtoText p {
+  font-size: 19px;
+  font-weight: 500;
+}
+#AdvertiseText h1 {
+  margin-top: 150px;
+  font-size: 2em;
+  color: #1c1819;
+}
+#AdvertiseText p {
+  font-size: 16px;
+  color: #1c1819;
+  width: 680px;
+  margin-top: 20px;
+  line-height: 30px;
+  /* border: 1px solid red; */
+}
+#AdvertiseText p span {
+  font-weight: 700;
+}
+.yili input {
+  border: 1px solid #abadb3;
+  color: #000;
+  font-size: 1.356em;
+  height: 29px;
+  line-height: 26px;
+  padding: 0.1em;
+  width: 5.9em;
+}
+.yili p {
+  color: #666;
+  font-size: 0.8461538462em;
+}
+select {
+  font-size: 14px;
+  height: 34px;
+  width: 140px;
+  outline: none;
+  padding: 0px 5px;
+}
+#AddAvto p {
+  width: 200px;
+  font-size: 19px;
+}
+.AddAvtoTwo {
+  height: 50px;
+}
+.Yoqilgi {
+  display: flex;
+  /* width: 100%; */
+  /* border: 1px solid red; */
+}
+.Yoqilgi input {
+  display: flex;
+  justify-content: center;
+  background-color: none;
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  color: #06c;
+  text-decoration: underline;
+  font-size: 17px;
+}
+#yurgani {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+#yurgani input {
+  width: 8.9em;
+  height: 30px;
+  font-size: 15px;
+}
+#yurgani p {
+  font-size: 18px;
+  color: #1c1819;
 }

@@ -1,220 +1,13 @@
-// import { useState } from "react";
-
-// // import { Link } from "@mui/icons-material"
-
-// const Post = () => {
-//   const [postData, setPostData] = useState({
-//     model: "Toyota",
-//     rusum: "rusum",
-//     yili: "yili",
-//     savdolashuv: "savdolashuv",
-//     uzatma: "uzatma",
-//     photo: null,
-//     xolati: "xolati",
-//     yeyishi: "yeyishi",
-//     kraska_holati: "kraska_holati:",
-//     shahar: "shahar",
-//     narxi: "10 000",
-//     valyuta: "So'm",
-//     data: "data",
-//     yana: "yana",
-//   });
-
-//   const handleFileChange = (e) => {
-//     setPostData({ ...postData, photo: e.target.files });
-//   };
-
-//   const handlePostData = () => {
-//     const formData = new FormData();
-
-//     Object.keys(postData).forEach((key) => {
-//       formData.append(key, postData[key]);
-//     });
-
-//     fetch("https://masterphoneuz.pythonanywhere.com/", {
-//       method: "POST",
-//       body: formData,
-//     })
-//       .then((response) => response.json())
-//       .then((result) => {
-//         console.log("Ma'lumot yuborildi: ", result);
-
-//         fetch("https://masterphoneuz.pythonanywhere.com/?format=json")
-//           .then((response) => response.json())
-//           .then((data) => {
-//             console.log("Received Data: ", data);
-//           })
-//           .catch((error) =>
-//             console.error("API dan ma'lumot olishda xato: ", error)
-//           );
-//       })
-//       .catch((error) =>
-//         console.error("API ga ma'lumot yuborishda xato: ", error)
-//       );
-//   };
-
-//   return (
-//     <div>
-//       <h1>Avto Malumotlar</h1>
-
-//       {/* Uncomment the following section if you want to display received data */}
-//       {/* {receivedData.map(item => (
-//         <div key={item.id}>
-//           <p>Model: {item.model.name}</p>
-//           <p>Rusum: {item.rusum.name}</p>
-//           <p>Yili: {item.yili}</p>
-//           <p>Savdolashuv: {item.savdolashuv}</p>
-//           <p>{item.yana}</p>
-//           {item.photo.map(photo => (
-//             <img key={photo.id} src={photo.photo} alt="Car Photo" />
-//           ))}
-//         </div>
-//       ))} */}
-
-//       {/* Form for submitting data */}
-//       <div>
-//         <h2>Ma`lumot yuborish</h2>
-//         <label>
-//           Model:
-//           <input
-//             type="text"
-//             value={postData.model}
-//             onChange={(e) =>
-//               setPostData({ ...postData, model: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Rusum:
-//           <input
-//             type="text"
-//             value={postData.rusum}
-//             onChange={(e) =>
-//               setPostData({ ...postData, rusum: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Yili:
-//           <input
-//             type="text"
-//             value={postData.yili}
-//             onChange={(e) => setPostData({ ...postData, yili: e.target.value })}
-//           />
-//         </label>
-//         <label>
-//           Savdolashuv:
-//           <input
-//             type="text"
-//             value={postData.savdolashuv}
-//             onChange={(e) =>
-//               setPostData({ ...postData, savdolashuv: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Uzatma:
-//           <input
-//             type="text"
-//             value={postData.uzatma}
-//             onChange={(e) =>
-//               setPostData({ ...postData, uzatma: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Xolati:
-//           <input
-//             type="text"
-//             value={postData.xolati}
-//             onChange={(e) =>
-//               setPostData({ ...postData, xolati: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Yeyishi:
-//           <input
-//             type="text"
-//             value={postData.yeyishi}
-//             onChange={(e) =>
-//               setPostData({ ...postData, yeyishi: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Kraska Holati:
-//           <input
-//             type="text"
-//             value={postData.kraska_holati}
-//             onChange={(e) =>
-//               setPostData({ ...postData, kraska_holati: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Shahar:
-//           <input
-//             type="text"
-//             value={postData.shahar}
-//             onChange={(e) =>
-//               setPostData({ ...postData, shahar: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Narxi:
-//           <input
-//             type="text"
-//             value={postData.narxi}
-//             onChange={(e) =>
-//               setPostData({ ...postData, narxi: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Valyuta:
-//           <input
-//             type="text"
-//             value={postData.valyuta}
-//             onChange={(e) =>
-//               setPostData({ ...postData, valyuta: e.target.value })
-//             }
-//           />
-//         </label>
-//         <label>
-//           Data:
-//           <input
-//             type="text"
-//             value={postData.data}
-//             onChange={(e) => setPostData({ ...postData, data: e.target.value })}
-//           />
-//         </label>
-//         <label>
-//           Yana:
-//           <input
-//             type="text"
-//             value={postData.yana}
-//             onChange={(e) => setPostData({ ...postData, yana: e.target.value })}
-//           />
-//         </label>
-//         <label>
-//           Photo:
-//           <input type="file" onChange={handleFileChange} />
-//         </label>
-
-//         <button onClick={handlePostData}>Yuborish</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Post;
 import { useEffect, useState } from "react";
+import Loading from "../../components/loading/loading";
+import AdvertiseText from "../../components/AdvertiseText/AdvertiseText";
 
 const Post = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [yearInput, setYearInput] = useState("");
+  const [yeInput, setYeInput] = useState("");
+  const [engineVolume, setEngineVolume] = useState("");
 
   useEffect(() => {
     fetch("https://masterphoneuz.pythonanywhere.com/all/")
@@ -233,39 +26,31 @@ const Post = () => {
     fetch("https://masterphoneuz.pythonanywhere.com/all/")
       .then((response) => response.json())
       .then((json) => console.log(json));
-  }, []);
+  });
+
+  const handleInputChange = (e, setFunction, validationFunction) => {
+    const inputValue = e.target.value;
+    const newValue = validationFunction(inputValue) ? inputValue : "";
+    setFunction(newValue);
+  };
+
+  const validateYearInput = (input) =>
+    /^\d+$/.test(input) &&
+    parseInt(input, 10) >= 1998 &&
+    parseInt(input, 10) <= 2024;
+  const validateYeInput = (input) =>
+    /^\d+$/.test(input) &&
+    parseInt(input, 10) >= 100 &&
+    parseInt(input, 10) <= 1000000;
+  const validateEngineVolume = (input) =>
+    /^\d+(\.\d+)?$/.test(input) &&
+    parseFloat(input) >= 0.1 &&
+    parseFloat(input) <= 9.0;
 
   return (
     <div>
       {loading ? (
-        <div className="loadingio-spinner-spin-s5tib6bbx1c">
-          <div className="ldio-ek9odou59f">
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
-            </div>
-          </div>
-        </div>
+        <Loading />
       ) : (
         <div id="Post">
           <div className="content">
@@ -274,17 +59,197 @@ const Post = () => {
               <h2>Add Avto</h2>
             </div>
           </div>
-          <div id="AddAvto" >
+          <AdvertiseText />
+          <div id="AddAvto" name="Marka va model">
+            <p>Marka va model*</p>
+            <select id="markaModel" name="markaModel">
+              {data?.[3]?.map((el) => (
+                <option key={el.id}>{el.name}</option>
+              ))}
+            </select>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div id="AddAvto" className="AddAvtoTwo" name="Yili">
             <div>
-              <div id="AvtoText">
-              <p>Marka va model*</p>
-              </div>
+              <p>Yili*</p>
+            </div>
+            <div className="yili">
+              <input
+                type="number"
+                id="yearInput"
+                value={yearInput}
+                onChange={(e) =>
+                  handleInputChange(e, setYearInput, validateYearInput)
+                }
+                placeholder=""
+              />
+              <p
+                style={{
+                  color: "#666",
+                  fontSize: ".8461538462em",
+                  width: "100%",
+                  display:
+                    yearInput &&
+                    (parseInt(yearInput, 10) < 1998 ||
+                      parseInt(yearInput, 10) > 2024)
+                      ? "block"
+                      : "none",
+                  height: "20px",
+                }}
+              >
+                {yearInput &&
+                  (parseInt(yearInput, 10) < 1998
+                    ? "1998 dan katta son kiriting"
+                    : "2024 dan kam son kiriting")}
+              </p>
+            </div>
+          </div>
+          <div id="AddAvto" className="AddAvtoTwo" name="Narxi">
+            <div>
+              <p>Narxi*</p>
+            </div>
+            <div className="yili">
+              <input
+                type="number"
+                id="yeInput"
+                value={yeInput}
+                onChange={(e) =>
+                  handleInputChange(e, setYeInput, validateYeInput)
+                }
+                placeholder=""
+              />
+              <p
+                style={{
+                  color: "#666",
+                  fontSize: ".8461538462em",
+                  width: "100%",
+                  display:
+                    yeInput &&
+                    (parseInt(yeInput, 10) < 100 ||
+                      parseInt(yeInput, 10) > 1000000)
+                      ? "block"
+                      : "none",
+                  height: "20px",
+                }}
+              >
+                {yeInput &&
+                  (parseInt(yeInput, 10) < 100
+                    ? "100 у.е.dan kam bo'lmagan summa ko'rsating"
+                    : "1 000 000 dan kam bo'lgan summa kiriting")}
+              </p>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div id="AddAvto" name="Savdolashuv">
+            <p>Savdolashuv</p>
+            <select id="markaModel" name="markaModel">
+              <option>Yoq</option>
+              <option>Savdolashuv bor</option>
+            </select>
+          </div>
+          <div id="AddAvto" className="AddAvtoTwo" name="Dvigatel hajmi">
+            <div>
+              <p>Dvigatel hajmi</p>
+            </div>
+            <div className="yili">
+              <input
+                type="number"
+                id="engineVolume"
+                value={engineVolume}
+                onChange={(e) =>
+                  handleInputChange(e, setEngineVolume, validateEngineVolume)
+                }
+                placeholder=""
+                step="0.1"
+              />
+              <p
+                style={{
+                  color: "#666",
+                  fontSize: ".8461538462em",
+                  width: "100%",
+                }}
+              >
+                . qilib yozing
+              </p>
+            </div>
+          </div>
+          <div id="AddAvto" className="AddAvtoTwo" name="Yoqilg'i turi*">
+            <div>
+              <p>Yoqilg`i turi*</p>
+            </div>
+            <div className="Yoqilgi">
               <select name="" id="">
-                {data?.[3]?.map((el) => (
-                  <option key={el.id}>{el.name}</option>
-                ))}
+                <option value="">Benzin</option>
+                <option value="">Gaz-benzin</option>
+                <option value="">Dizel</option>
+                <option value="">Elektr</option>
+                <option value="">Gibrid</option>
+                <option value="">Gaz</option>
               </select>
             </div>
+          </div>
+          <div id="AddAvto" className="AddAvtoTwo" name="Uzatish qutisi*">
+            <div>
+              <p>Uzatish qutisi*</p>
+            </div>
+            <div className="uzatishQutisi">
+              <select name="" id="">
+                <option value="">Mexanik</option>
+                <option value="">Avtomat</option>
+                <option value="">Tiptronik</option>
+                <option value="">Variator</option>
+                <option value="">Robot</option>
+              </select>
+            </div>
+          </div>
+          <div id="AddAvto" className="AddAvtoTwo" name="Yurgani">
+            <div>
+              <p>Yurgani</p>
+            </div>
+            <div id="yurgani">
+              <input type="number" />
+              <p>km</p>
+            </div>
+            <div></div>
           </div>
         </div>
       )}
