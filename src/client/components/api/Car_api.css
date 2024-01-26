@@ -9,12 +9,10 @@
 }
 #car {
   width: 100%;
-  /* height: 1800px; */
   height: 100%;
 }
 #apiimgText {
   transition: 0.1s ease;
-  /* transform: scale(0.9); */
   display: flex;
   gap: 20px;
   width: 650px;
@@ -29,8 +27,6 @@
 }
 #carUz {
   width: 100%;
-  /* height: 100%; */
-  /* border: 1px solid red; */
 }
 #apiimgText:hover {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
@@ -70,8 +66,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid red; */
-  /* width: 100%; */
 }
 #carNameText h1:hover {
   text-decoration: underline;
@@ -182,7 +176,7 @@
   position: relative;
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  transform-origin: 0 0;
 }
 .ldio-7td4ewhbl1g div {
   box-sizing: content-box;
@@ -214,7 +208,6 @@
   margin-top: 15px;
   width: 100%;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
   height: 50px;
 }
 #model {
@@ -238,9 +231,7 @@
 }
 #api_footure {
   margin-top: 40px;
-  /* border:1px solid red; */
   width: 100%;
-  /* height: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -269,8 +260,6 @@
 }
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 #Post {
-  /* background-color: #000; */
-  /* min-height: 100vh; */
   margin-top: 80px;
 }
 .content {
@@ -436,7 +425,7 @@
   position: relative;
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  transform-origin: 0 0;
 }
 .ldio-ek9odou59f div {
   box-sizing: content-box;
@@ -445,6 +434,10 @@
   margin-top: 50px;
   display: flex;
   gap: 30px;
+  height: 50px;
+}
+#AddAvto:nth-child(14) {
+  margin-top: 150px;
 }
 #AvtoText p {
   font-size: 19px;
@@ -461,7 +454,6 @@
   width: 680px;
   margin-top: 20px;
   line-height: 30px;
-  /* border: 1px solid red; */
 }
 #AdvertiseText p span {
   font-weight: 700;
@@ -490,13 +482,8 @@ select {
   width: 200px;
   font-size: 19px;
 }
-.AddAvtoTwo {
-  height: 50px;
-}
 .Yoqilgi {
   display: flex;
-  /* width: 100%; */
-  /* border: 1px solid red; */
 }
 .Yoqilgi input {
   display: flex;
@@ -511,16 +498,117 @@ select {
   font-size: 17px;
 }
 #yurgani {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
-  gap: 2px;
 }
 #yurgani input {
   width: 8.9em;
   height: 30px;
   font-size: 15px;
 }
-#yurgani p {
-  font-size: 18px;
+.kmP p {
+  font-size: 17px;
   color: #1c1819;
+  margin-left: -30%;
+}
+#Narxi {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+#money {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 100px;
+  width: 100px;
+}
+#money p {
+  width: 40px;
+  cursor: pointer;
+}
+#money p:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #d6ecfb;
+  border: 0;
+  padding: 0px 3px;
+  width: 100%;
+  height: 25px;
+  color: #68686c;
+}
+#money p:nth-child(2) {
+  color: #0066cc;
+  text-decoration: underline;
+}
+#postTextSmallP p {
+  color: #757273;
+  font-size: 14px;
+}
+.textarea textarea {
+  font-size: 20px;
+  width: 900px;
+  height: 150px;
+}
+.yana {
+  height: 800px;
+}
+#foto {
+  background-color: #f2f7f7;
+  width: 900px;
+  height: 150px;
+  padding: 20px;
+  border: dashed 1px #b0bec5;
+}
+
+#putAPicture label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  width: 140px;
+  height: 35px;
+  background-color: #fefefe;
+  background-image: linear-gradient(180deg, #fefefe 0, #dfdfdf);
+  border: 1px solid #c0c0bf;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px 0 #bebebe;
+  color: #000;
+}
+.rasmQoshish {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#rasmQoshishPText p {
+  color: gray;
+  font-size: 14px;
+  width: 100%;
+}
+#fotoText {
+  margin-top: 24px;
+}
+#fotoText p {
+  color: gray;
+  margin-top: 5px;
+  font: 14px Open Sans, sans-serif;
+  width: 100%;
+}
+#ContactInformation {
+  margin-top: 160px;
+}
+#ContactWord h1 {
+  font-size: 30px;
+  font-weight: 400;
+  padding: 0;
+}
+#viloyatlar,
+#shaxarTumanlar {
+  margin-top: 50px;
+  display: flex;
+  gap: 170px;
+  height: 50px;
 }

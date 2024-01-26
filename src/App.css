@@ -17,10 +17,13 @@ body {
 }
 header,
 main,
-#car,
-#Post {
+#car, 
+#post {
   padding: 0px 100px;
 }
 img {
   cursor: pointer;
+}
+.content {
+  margin-top: 100%;
 }

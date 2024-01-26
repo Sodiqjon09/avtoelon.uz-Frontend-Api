@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "../components/navbar/navbar";
 import Footure from "../components/Footure/Footure";
@@ -5,35 +6,56 @@ import Post from "../admin login/Post/Post";
 import IndexJsx from "../../client/pages/index";
 import Main from "../components/Main/Main";
 import CarAPi from "../components/carApi/carApi";
+import Loading from "../components/loading/loading";
+import Error404 from "../components/Error404/Error";
+
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+
   const isPostPage = window.location.pathname === "/post";
 
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => {
+      clearTimeout(loadingTimeout);
+    };
+  }, []);
+
   return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/post" element={<Post />} />
-        <Route
-          path="/"
-          element={
-            isPostPage ? (
-              <Navigate to="/post" />
-            ) : (
-              <>
-                {/* Bu joyda hech narsa chiqmasin */}
-                <Main />
-                <CarAPi />
-              </>
-            )
-          }
-        />
-        <Route path="/mashinasozlik" element={<IndexJsx />} />
-        <Route path="/mashina" />
-        <Route path="/avtozapchat" />
-        <Route path="/remont" />
-      </Routes>
-      <Footure />
-    </div>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Routes>
+            <Route path="/post" element={<Post />} />
+            <Route
+              path="/"
+              element={
+                isPostPage ? (
+                  <Navigate to="/post" />
+                ) : (
+                  <>
+                    <Navbar />
+                    <Main />
+                    <CarAPi />
+                    <Footure />
+                  </>
+                )
+              }
+            />
+            <Route path="/mashinasozlik" element={<IndexJsx />} />
+            <Route path="/mashina" />
+            <Route path="/avtozapchat" />
+            <Route path="/remont" />
+            <Route path="/*" element={<Error404 />}/>
+          </Routes>
+        </>
+      )}
+    </>
   );
 };
 

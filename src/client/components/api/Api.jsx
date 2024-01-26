@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Like from "../Like/Like";
 import "./Car_api.css";
 import { FaEye } from "react-icons/fa";
@@ -7,7 +6,6 @@ import { FaEye } from "react-icons/fa";
 const Api = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [isExpanded, setExpanded] = useState(false);
 
   useEffect(() => {
     fetch("https://masterphoneuz.pythonanywhere.com/")
@@ -21,28 +19,6 @@ const Api = () => {
         setLoading(false);
       });
   }, []);
-
-
-
-  
-  // const toggle = document.getElementById("toggle");
-  // const pastga = document.getElementById("pastga");
-  // const tepaga = document.getElementById("tepaag");
-
-  // const handleToggleClick = () => {
-  //   toggle.style.display = "block";
-  //   pastga.style.display = "none";
-  // };
-  // const handleToggleClick2 = () => {
-  //   toggle.style.display = "none";
-  //   tepaga.style.display = "block";
-  // };
-  // useEffect(() => {
-  //   fetch("https://masterphoneuz.pythonanywhere.com/admin/avto/avto/add/")
-  //     .then((response) => response.json())
-  //     .then(json => console.log(json));
-  // }, []);
-
   return (
     <div id="api">
       {loading ? (
@@ -87,23 +63,6 @@ const Api = () => {
                   <p>{item.savdolashuv},</p>
                   <p>{item.kraska_holati},</p>
                   <p>{item.rusum.name},</p>
-                  {/* <div id="bottom">
-                    <HiChevronDown
-                      id="pastga"
-                      onClick={handleToggleClick}
-                      // style={{ display: "none" }}
-                      size={30}
-                    />
-                    <HiChevronUp
-                      style={{ display: "none" }}
-                      id="tepaga"
-                      onClick={handleToggleClick2}
-                      size={30}
-                    />
-                    <p id="toggle" style={{ display: "none" }}>
-                      {item.yana}
-                    </p>
-                  </div> */}
                 </div>
               </div>
               <div id="api_footure">
@@ -119,7 +78,7 @@ const Api = () => {
                     <span>{item.viewed_list} </span>
                     <span> ko`rganlar soni</span>
                   </p>
-                </div>
+                </div>  
               </div>
             </div>
           </div>

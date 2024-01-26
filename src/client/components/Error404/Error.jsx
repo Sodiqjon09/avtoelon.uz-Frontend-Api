@@ -1,12 +1,14 @@
-import Error404 from '../../assets/imgs/404.webp'
-// import Error404 from '../../assets/imgs/error404.png'
+import './Eror.css';
 
 const Error = () => {
   return (
-    <div>
-        <img style={{width: '100%'}} src={Error404} alt="" />
-    </div>
-  )
-}
+    <body>
+      <div className="error-container">
+        <h1 className="error-code">404</h1>
+        <p className="error-message">Error not found</p>
+      </div>
+    </body>
+  );
+};
 
-export default Error
+export default Error;
