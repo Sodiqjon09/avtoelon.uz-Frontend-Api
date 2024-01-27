@@ -140,6 +140,9 @@ const Post = () => {
 
   const regions = ["Toshkent viloyati", "Namangan viloyati"];
 
+  const Tasdiqlandi = () => {
+    // alert('Raqam Tasdiqlandi')
+  }
   return (
     <>
       {loading ? (
@@ -366,7 +369,6 @@ const Post = () => {
               </div>
             </div>
           </div>
-
           <div id="ContactInformation" name="Aloqa ma'lumotlari">
             <div id="ContactWord">
               <h1>Aloqa ma`lumotlari</h1>
@@ -391,7 +393,9 @@ const Post = () => {
                 </select>
               </div>
               <div id="shaxarTumanlar">
-                <div>Shaxar*</div>
+                <div>
+                  <p>Shaxar*</p>
+                </div>
                 <div>
                   {selectedRegion && (
                     <>
@@ -411,6 +415,26 @@ const Post = () => {
                     </>
                   )}
                 </div>
+              </div>
+              <div id="phoneNumber">
+                <div>
+                  <p>Aloqa uchun telefon*</p>
+                </div>
+                <div id="phoneInput">
+                  <p>+998</p>
+                  <input
+                    type="text"
+                    maxLength={9}
+                    pattern="[0-9]{9}"
+                    title="Please enter exactly 9 digits"
+                  />
+                </div>
+              </div>
+              <div id="phoneButton">
+                <div></div>
+              <button onClick={Tasdiqlandi} type="submit">
+                Tasdiqlash
+                </button>
               </div>
             </div>
           </div>

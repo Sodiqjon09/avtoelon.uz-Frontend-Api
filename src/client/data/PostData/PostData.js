@@ -37,10 +37,6 @@ export const RangData = [
   },
   {
     id: 1,
-    name: "",
-  },
-  {
-    id: 1,
     name: "Olcha",
   },
   {
