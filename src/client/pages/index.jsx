@@ -8,6 +8,7 @@ import Main from "../components/Main/Main";
 import CarAPi from "../components/carApi/carApi";
 import Loading from "../components/loading/loading";
 import Error404 from "../components/Error404/Error";
+import ContentQoyida from "../components/ContentQoyida/ContentQoyida";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -47,11 +48,13 @@ const Home = () => {
                 )
               }
             />
+            <Route path="/home" element={<IndexJsx />} />
             <Route path="/mashinasozlik" element={<IndexJsx />} />
             <Route path="/mashina" />
             <Route path="/avtozapchat" />
             <Route path="/remont" />
-            <Route path="/*" element={<Error404 />}/>
+            <Route path="/content" element={<ContentQoyida />}/>
+            <Route path="/*" element={<Error404 />} />
           </Routes>
         </>
       )}

@@ -73,3 +73,20 @@ export const RangData = [
     name: "To'q-ko'k",
   },
 ];
+
+export const carNames = ["ARO", "BMW", "BYD"];
+
+export const carNamesMapping = {
+  ARO: [
+    { id: 1, name: "10 Series" },
+    { id: 2, name: "24 Series" },
+  ],
+  BMW: [
+    { id: 1, name: "BMW XM" },
+    { id: 2, name: "BMW X4" },
+  ],
+  BYD: [
+    { id: 1, name: "Some BYD" },
+    { id: 2, name: "Some BYD" },
+  ],
+};

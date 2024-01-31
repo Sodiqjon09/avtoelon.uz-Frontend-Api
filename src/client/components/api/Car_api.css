@@ -608,11 +608,18 @@ select {
 #viloyatlar,
 #shaxarTumanlar,
 #phoneNumber,
-#phoneButton {
+#phoneButton  {
   margin-top: 50px;
   display: flex;
-  gap: 170px;
+  gap: 80px;
   height: 50px;
+}
+#viloyatlar p,
+#shaxarTumanlar p,
+#phoneNumber p,
+#phoneButton p {
+  /* border: 1px solid red; */
+  width: 150px;
 }
 #phoneInput {
   display: flex;
@@ -642,9 +649,47 @@ select {
   font-size: 17px;
   padding: 10px;
   text-align: center;
-  width: 226px;
+  width: 195px;
+  height: 40px;
   cursor: pointer;
 }
-#phoneButton {
-  margin-top: 20px;
+#advertising {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e7f4f9;
+  padding: 4px 0;
+  margin-top: 10px;
+}
+#advertising p {
+  color: #1c1819;
+  font: 15px Open Sans, sans-serif;
+}
+#advertising p span {
+  color: #2a81dd;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+#PostDataApi {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+#PostDataApi button {
+  background: #1a80d9;
+  border: none;
+  color: #fff;
+  outline: none;
+  width: 180px;
+  height: 34px;
+  font-size: 16px;
+  border-radius: 3px;
+  transition: 0.4s ease-in-out;
+}
+#PostDataApi button:hover {
+  background-color: #fff;
+  color: #1a80d9;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

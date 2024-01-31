@@ -1,180 +1,177 @@
-import { useEffect, useState } from "react";
-import Loading1 from "../../components/loading/loading";
+import { useState } from "react";
 import AdvertiseText from "../../components/AdvertiseText/AdvertiseText";
-import { RangData } from "../../data/PostData/PostData";
+import { carNames, carNamesMapping } from "../../data/PostData/PostData";
+import Navbar from "../../components/navbar/navbar";
+import Footure from "../../components/Footure/Footure";
+import "./Post.css";
 
 const Post = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [engineVolume, setEngineVolume] = useState("");
   const [yearError, setYearError] = useState(false);
-  const [enteredYear, setEnteredYear] = useState("");
+  const [selectedCar, setSelectedCar] = useState("");
+  const [selectedModels, setSelectedModels] = useState([]);
   const [priceError, setPriceError] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [cities, setCities] = useState({});
 
-  useEffect(() => {
-    fetch("https://masterphoneuz.pythonanywhere.com/all/")
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Xato fetching data:", error);
-        setLoading(false);
+  const [newCarData, setNewCarData] = useState({
+    id: 14,
+    yili: "",
+    savdolashuv: "",
+    yurgani: "",
+    uzatma: "",
+    xolati: "",
+    yeyishi: "",
+    karobka: "",
+    rang: "",
+    kraska_holati: "",
+    narhi: "",
+    valyuta: "",
+    dvigatel: "",
+    data: "",
+    viewed_list: 0,
+    yana: null,
+    model: 3,
+    rusum: 4,
+    shahar: 4,
+    user: 1,
+    photo: [14, 15],
+  });
+
+  const handleInputChange = (e) => {
+    const { name, type, value, files } = e.target;
+
+    if (type === "file") {
+      setNewCarData({
+        ...newCarData,
+        [name]: files[0],
       });
-  }, []);
+    } else if (name === "yili") {
+      const year = parseInt(value, 10);
+      setNewCarData({
+        ...newCarData,
+        [name]: value,
+      });
 
-  const handleYearChange = (event) => {
-    const year = event.target.value;
-    setEnteredYear(year);
+      if (year < 1900 || year > 2024) {
+        setYearError(true);
+      } else {
+        setYearError(false);
+      }
+    } else if (name === "narhi") {
+      const numericValue = parseInt(value, 10);
 
-    if (year < 1900 || year > 2024) {
-      setYearError(true);
+      if (numericValue < 100 || numericValue > 1000000) {
+        setPriceError(true);
+      } else {
+        setPriceError(false);
+      }
+
+      setNewCarData({
+        ...newCarData,
+        [name]: numericValue,
+      });
     } else {
-      setYearError(false);
+      setNewCarData({
+        ...newCarData,
+        [name]: value,
+      });
     }
   };
 
-  const handlePriceChange = (event) => {
-    const price = event.target.value;
+  const postData = async () => {
+    try {
+      const formData = new FormData();
 
-    if (price > 9999999) {
-      setPriceError(true);
-    } else {
-      setPriceError(false);
-    }
-  };
-
-  const twoP1 = document.getElementById("twoP");
-  const oneP1 = document.getElementById("oneP");
-
-  const twoP = () => {
-    twoP1.style.display = "flex";
-    twoP1.style.justifyContent = "center";
-    twoP1.style.alignItems = "center";
-    twoP1.style.background = "#d6ecfb";
-    twoP1.style.border = 0;
-    twoP1.style.padding = "0px 3px";
-    twoP1.style.width = "100%";
-    twoP1.style.height = "25px";
-    twoP1.style.color = "#68686c";
-    oneP1.style.color = "#0066cc";
-    oneP1.style.background = "none";
-    oneP1.style.textDecoration = "underline";
-  };
-
-  const oneP = () => {
-    oneP1.style.display = "flex";
-    oneP1.style.justifyContent = "center";
-    oneP1.style.alignItems = "center";
-    oneP1.style.background = "#d6ecfb";
-    oneP1.style.border = 0;
-    oneP1.style.padding = "0px 3px";
-    oneP1.style.width = "100%";
-    oneP1.style.height = "25px";
-    oneP1.style.color = "#68686c";
-    twoP1.style.color = "#0066cc";
-    twoP1.style.background = "none";
-    twoP1.style.textDecoration = "underline";
-  };
-
-  const handleInputChange = (e, setFunction, validationFunction) => {
-    const inputValue = e.target.value;
-
-    if (!engineVolume && inputValue.length === 1) {
-      setFunction(inputValue);
-    } else if (validationFunction(inputValue)) {
-      setFunction(inputValue);
-    }
-  };
-
-  const validateEngineVolume = (input) =>
-    /^\d+(\.\d+)?$/.test(input) &&
-    parseFloat(input) >= 0.1 &&
-    parseFloat(input) <= 9.0;
-
-  const handleYurganiChange = (event) => {
-    const value = event.target.value;
-
-    if (!isNaN(value)) {
-      setInputValue(value);
-
-      setTimeout(() => {
-        if (parseInt(value) > 9999999) {
-          setInputValue("");
+      for (const key in newCarData) {
+        if (key === "photo") {
+          const files = newCarData[key];
+          if (files) {
+            for (let i = 0; i < files.length; i++) {
+              formData.append(`${key}_${i}`, files[i]);
+            }
+          }
+        } else {
+          formData.append(key, newCarData[key]);
         }
-      }, 2000);
+      }
+
+      const response = await fetch(
+        "https://masterphoneuz.pythonanywhere.com/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        console.log("Data successfully posted!");
+      } else {
+        console.error("Error posting data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
     }
   };
 
-  const handleRegionChange = (event) => {
-    const region = event.target.value;
-    setSelectedRegion(region);
-
-    const citiesForRegion = getCitiesForRegion(region);
-
-    setCities({ ...cities, [region]: citiesForRegion });
-    setSelectedCity("");
+  const handleCarChange = (event) => {
+    const selectedCarName = event.target.value;
+    setSelectedCar(selectedCarName);
+    setSelectedModels(carNamesMapping[selectedCarName] || []);
+    const rusumSelect = document.getElementById("rusumSelect");
+    rusumSelect.style.display = "none";
   };
 
-  const getCitiesForRegion = (region) => {
-    const cityMapping = {
-      "Toshkent viloyati": [
-        { id: 1, name: "Toshkent Shaxar" },
-        { id: 2, name: "Bekobod" },
-        { id: 3, name: "Chirchiq" },
-      ],
-      "Namangan viloyati": [
-        { id: 4, name: "Namangan Shaxari" },
-        { id: 5, name: "Chust" },
-        { id: 6, name: "Kosonsoy" },
-      ],
-    };
-
-    return cityMapping[region] || [];
-  };
-
-  const regions = ["Toshkent viloyati", "Namangan viloyati"];
-
-  const Tasdiqlandi = () => {
-    // alert('Raqam Tasdiqlandi')
-  }
   return (
-    <>
-      {loading ? (
-        <Loading1 />
-      ) : (
-        <div id="Post">
-          <div className="content">
-            <div>
-              <h2>Add Avto</h2>
-              <h2>Add Avto</h2>
-            </div>
+    <div>
+      <Navbar />
+      <div id="Post">
+        <div className="content">
+          <div>
+            <h2>Add Avto</h2>
+            <h2>Add Avto</h2>
           </div>
-          <AdvertiseText />
-          <div id="AddAvto" name="Marka va model">
-            <p>Marka va model*</p>
-            <select id="markaModel" name="markaModel">
-              {data?.[3]?.map((el) => (
-                <option key={el.id}>{el.name}</option>
+        </div>
+        <AdvertiseText />
+
+        <form encType="multipart/form-data">
+          <label id="AddAvto" name="Model">
+            <p>Model:</p>
+            <select
+              name="model"
+              value={selectedCar}
+              onChange={handleCarChange}
+              id=""
+            >
+              <option value="">Tanlash</option>
+              {carNames.map((carName) => (
+                <option key={carName} value={carName}>
+                  {carName}
+                </option>
               ))}
             </select>
-          </div>
-          <div id="AddAvto" className="AddAvtoTwo" name="Yili">
+          </label>
+          <label id="AddAvto" name="Rusum">
+            <p>Rusum:</p>
+            <select name="" id="rusumSelect">
+              <option value="">Tanlash</option>
+            </select>
+            {selectedModels.length > 0 && (
+              <select name="" id="">
+                <option value="">Tanlash</option>
+                {selectedModels.map((model) => (
+                  <option key={model.id}>{model.name}</option>
+                ))}
+              </select>
+            )}
+          </label>
+          <label id="AddAvto" name="Yili">
             <div>
-              <p>Yili*</p>
+              <p>Yili:</p>
             </div>
             <div className="yili">
               <input
+                value={newCarData.yili}
                 type="number"
-                id="yearInput"
-                placeholder=""
-                value={enteredYear}
-                onChange={handleYearChange}
+                name="yili"
+                onChange={handleInputChange}
               />
               {yearError && (
                 <p
@@ -184,263 +181,216 @@ const Post = () => {
                     width: "100%",
                   }}
                 >
-                  Yilni 1900 dan kam yoki 2024 dan ko`p kiriting! 2020 ga
-                  tenglashtirilmoqda.
+                  Yaroqsiz yil. 1900 va 2024 yillar oralig`idagi yilni kiriting.
                 </p>
               )}
             </div>
-          </div>
-          <div id="AddAvto" className="AddAvtoTwo" name="Narxi">
-            <div>
-              <p>Narxi*</p>
-            </div>
-            <div className="yili" id="Narxi">
-              <div className="NarxiP">
-                <input
-                  type="number"
-                  id="yeInput"
-                  placeholder=""
-                  onChange={handlePriceChange}
-                />
-                {priceError && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: ".8461538462em",
-                      width: "9.4em",
-                    }}
+          </label>
+          <label id="AddAvto">
+            <p>Narhi:</p>
+            <div className="Componentinput">
+              <div id="narxiFlex">
+                <div>
+                  <input
+                    value={newCarData.narhi}
+                    type="number"
+                    name="narhi"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <label>
+                  <select
+                    value={newCarData.valyuta}
+                    onChange={handleInputChange}
+                    name="valyuta"
+                    id=""
                   >
-                    1 000 000 dan kam summa kiriting
-                  </p>
-                )}
+                    <option value="UZS">UZS</option>
+                    <option value="USD">USD</option>
+                  </select>
+                </label>
               </div>
-              <div id="money">
-                <p id="oneP" onClick={oneP}>
-                  so`m
+              <br />
+              {priceError && (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: ".8461538462em",
+                    width: "100%",
+                  }}
+                >
+                  Yaroqsiz summa. 100 va 1000000 summa o`ralig`ida summa
+                  kiriting
                 </p>
-                <p id="twoP" onClick={twoP}>
-                  y.e.
-                </p>
+              )}
+            </div>
+          </label>
+          <label id="AddAvto">
+            <p>savdolashuv:</p>
+            <div>
+              <select
+                id=""
+                value={newCarData.savdolashuv}
+                type="text"
+                name="savdolashuv"
+                onChange={handleInputChange}
+              >
+                <option value="">Savdolashuv yoq</option>
+                <option value="">Savdolashuv bor</option>
+              </select>
+            </div>
+          </label>
+
+          <label id="AddAvto">
+            <p>Uzatma:</p>
+            <input
+              value={newCarData.uzatma}
+              type="text"
+              name="uzatma"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Xolati:</p>
+            <input
+              value={newCarData.xolati}
+              type="text"
+              name="xolati"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Yeyishi:</p>
+            <input
+              value={newCarData.yeyishi}
+              type="text"
+              name="yeyishi"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Karobka:</p>
+            <input
+              value={newCarData.karobka}
+              type="text"
+              name="karobka"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Rang:</p>
+            <input
+              value={newCarData.rang}
+              type="text"
+              name="rang"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Kraska Holati:</p>
+            <input
+              value={newCarData.kraska_holati}
+              type="text"
+              name="kraska_holati"
+              onChange={handleInputChange}
+            />
+          </label>
+
+          <label id="AddAvto">
+            <p>Dvigatel:</p>
+            <input
+              value={newCarData.dvigatel}
+              type="text"
+              name="dvigatel"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Sana:</p>
+            <input
+              type="date"
+              name="data"
+              value={newCarData.data}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Viewed List:</p>
+            <input
+              value={newCarData.viewed_list}
+              type="number"
+              name="viewed_list"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>Yana:</p>
+            <input
+              value={newCarData.yana}
+              type="text"
+              name="yana"
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="AddAvto">
+            <p>User ID:</p>
+            <input
+              type="text"
+              name="user"
+              value={newCarData.user}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label id="foto">
+            <div className="rasmQoshish">
+              <div id="putAPicture">
+                <label htmlFor="rasm_uchun">rasm qo`shish</label>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="rasm_uchun"
+                  name="Rasm qo'shish"
+                  onChange={handleInputChange}
+                  accept="image/*"
+                />
+              </div>
+              <div id="rasmQoshishPText">
+                <p>Faylni shu yerga ko`chirib qo`ying.</p>
               </div>
             </div>
-          </div>
-          <div id="AddAvto" name="Savdolashuv">
-            <p>Savdolashuv</p>
-            <select id="markaModel" name="markaModel">
-              <option>Yoq</option>
-              <option>Savdolashuv bor</option>
+          </label>
+          <label id="AddAvto">
+            <p>Yurgani:</p>
+            <div className="Componentinput">
+              <input
+                value={newCarData.yurgani}
+                type="text"
+                name="yurgani"
+                onChange={handleInputChange}
+              />
+            </div>
+          </label>
+          <button type="button" onClick={postData}>
+            Add Car Data
+          </button>
+        </form>
+        <label id="AddAvto">
+          <p>Shahar:</p>
+          <div className="Componentinput">
+            <select
+              value={newCarData.shahar}
+              type="text"
+              name="shahar"
+              onChange={handleInputChange}
+              id=""
+            >
+              <option value=""></option>
             </select>
           </div>
-          <div id="AddAvto" className="AddAvtoTwo" name="Dvigatel hajmi">
-            <div>
-              <p>Dvigatel hajmi</p>
-            </div>
-            <div className="yili">
-              <input
-                type="number"
-                id="engineVolume"
-                value={engineVolume}
-                onChange={(e) =>
-                  handleInputChange(e, setEngineVolume, validateEngineVolume)
-                }
-                placeholder=""
-                step="0.1"
-              />
-              <p
-                style={{
-                  color: "#666",
-                  fontSize: ".8461538462em",
-                  width: "100%",
-                }}
-              >
-                . qilib yozing
-              </p>
-            </div>
-          </div>
-          <div id="AddAvto" name="Yoqilg'i turi*">
-            <div>
-              <p>Yoqilg`i turi*</p>
-            </div>
-            <div className="Yoqilgi">
-              <select name="" id="">
-                <option value="">Benzin</option>
-                <option value="">Gaz-benzin</option>
-                <option value="">Dizel</option>
-                <option value="">Elektr</option>
-                <option value="">Gibrid</option>
-                <option value="">Gaz</option>
-              </select>
-            </div>
-          </div>
-          <div id="AddAvto" name="Uzatish qutisi*">
-            <div>
-              <p>Uzatish qutisi*</p>
-            </div>
-            <div className="uzatishQutisi">
-              <select name="" id="">
-                <option value="">Mexanik</option>
-                <option value="">Avtomat</option>
-                <option value="">Tiptronik</option>
-                <option value="">Variator</option>
-                <option value="">Robot</option>
-              </select>
-            </div>
-          </div>
-          <div id="AddAvto" name="Yurgani">
-            <div>
-              <p>Yurgani</p>
-            </div>
-            <div id="yurgani">
-              <input
-                type="number"
-                value={inputValue}
-                onChange={handleYurganiChange}
-              />
-              <div className="kmP">
-                <p>km</p>
-              </div>
-              <div id="postTextSmallP">
-                <p>9999999 dan kam son kiritin</p>
-              </div>
-            </div>
-          </div>
-          <div id="AddAvto" name="rang">
-            <div>
-              <p>rang</p>
-            </div>
-            <div>
-              <select name="" id="">
-                {RangData?.map((el) => (
-                  <option value={el.id} key={el.id}>
-                    {el.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div id="AddAvto" name="Kraska xolati">
-            <div>
-              <p>Kraska xolati</p>
-            </div>
-            <div>
-              <select name="" id="">
-                <option value="">Kraska bor</option>
-                <option value="">Kraska toza</option>
-                <option value="">Pyatno bor</option>
-                <option value="">To`liq kraskalangan</option>
-              </select>
-            </div>
-          </div>
-          <div id="AddAvto" className="yana" name="yana">
-            <div>
-              <p>Qo` shimcha malumot</p>
-            </div>
-            <div className="textarea">
-              <textarea maxLength={2000} name="max" id=""></textarea>
-            </div>
-          </div>
-          <div id="AddAvto" className="RasmTop" name="Rasm">
-            <div>
-              <p>Rasm</p>
-            </div>
-            <div id="foto">
-              <div className="rasmQoshish">
-                <div id="putAPicture">
-                  <label htmlFor="rasm_uchun">rasm qo`shish</label>
-                  <input
-                    style={{ display: "none" }}
-                    type="file"
-                    id="rasm_uchun"
-                    name="Rasm qo'shish"
-                  />
-                </div>
-                <div id="rasmQoshishPText">
-                  <p>Faylni shu yerga ko`chirib qo`ying.</p>
-                </div>
-              </div>
-              <div id="fotoText">
-                <p>
-                  Formati - JPEG yoki PNG, hajmi - 10 megabaytdan ortiq emas.
-                </p>
-                <p>
-                  Rasmlar ketma-ketligini ularni bir joydan ikkinchi joyga olib
-                  o`tgan holda o`zgartirish mumkin.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div id="ContactInformation" name="Aloqa ma'lumotlari">
-            <div id="ContactWord">
-              <h1>Aloqa ma`lumotlari</h1>
-            </div>
-            <div id="regionalInformation">
-              <div id="viloyatlar">
-                <div>
-                  <p>Viloyat*</p>
-                </div>
-                <select
-                  name="viloyat"
-                  id="viloyat"
-                  value={selectedRegion}
-                  onChange={handleRegionChange}
-                >
-                  <option value="">Tanlash</option>
-                  {regions.map((region) => (
-                    <option key={region} value={region}>
-                      {region}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div id="shaxarTumanlar">
-                <div>
-                  <p>Shaxar*</p>
-                </div>
-                <div>
-                  {selectedRegion && (
-                    <>
-                      <select name="" id="">
-                        {cities[selectedRegion]?.map((city) => (
-                          <option
-                            value={selectedCity}
-                            onChange={(e) => setSelectedCity(e.target.value)}
-                            key={city.id}
-                            name={city.name}
-                            id={city.id}
-                          >
-                            {city.name}
-                          </option>
-                        ))}
-                      </select>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div id="phoneNumber">
-                <div>
-                  <p>Aloqa uchun telefon*</p>
-                </div>
-                <div id="phoneInput">
-                  <p>+998</p>
-                  <input
-                    type="text"
-                    maxLength={9}
-                    pattern="[0-9]{9}"
-                    title="Please enter exactly 9 digits"
-                  />
-                </div>
-              </div>
-              <div id="phoneButton">
-                <div></div>
-              <button onClick={Tasdiqlandi} type="submit">
-                Tasdiqlash
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+        </label>
+      </div>
+      <Footure />
+    </div>
   );
 };
 
