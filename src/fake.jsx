@@ -383,9 +383,7 @@ const Post = () => {
             <div>
               <p>Qo` shimcha malumot</p>
             </div>
-            <div className="textarea">
-              <textarea maxLength={2000} name="max" id=""></textarea>
-            </div>
+         
           </div>
           <div id="AddAvto" className="RasmTop" name="Rasm">
             <div>
